@@ -11,4 +11,5 @@ Gem::Specification.new do |s|
   s.license                      = "MIT"
 
   s.add_development_dependency 'rspec', '~> 3.8'
+  s.add_development_dependency 'haversine', '~> 0.3.2'
 end
