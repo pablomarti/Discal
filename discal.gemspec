@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name                         = "Discal"
-  s.version                      = "1.0.0"
+  s.version                      = "1.0.1"
   s.date                         = "2019-04-23"
   s.summary                      = "Gets the distance between two points"
   s.description                  = "Gets the distance between two points through two functions (math and 3rd API)"
