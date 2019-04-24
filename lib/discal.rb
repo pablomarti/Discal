@@ -30,25 +30,17 @@ class Discal
   protected
 
   def loop_coordinates
-    results = []
-    
-    coords.each_with_index do |coord1, i|
-      for j in (i+1)...(coords.count)
-        coord2 = coords[j]
-
-        cache = get_cache(coord1, coord2)
-        if cache
-          results << cache
-          next
-        end
-        
-        result = yield(coord1, coord2)
-        results << result
-        set_cache(coord1, coord2, result)
+    coords.each_slice(2).map do |c|
+      if cache = get_cache(c[0], c[1])
+        results << cache
+        next
       end
-    end
 
-    results
+      result = yield(c[0], c[1])
+      set_cache(c[0], c[1], result)
+
+      result
+    end
   end
 
   private
