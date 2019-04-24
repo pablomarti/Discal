@@ -3,21 +3,24 @@ require 'discal'
 RSpec.describe Discal do
   describe 'initialize' do
     it { expect { Discal.new(nil) }.to raise_error(ArgumentError, 'Argument is not an Array') }
-    it { expect { Discal.new([1]) }.to raise_error(ArgumentError, 'Argument must contain 2 coordinates') }
-    it { expect { Discal.new([1, 2]) }.to raise_error(ArgumentError, 'Point 1 is not an Array') }
-    it { expect { Discal.new([[1], 2]) }.to raise_error(ArgumentError, 'Point 2 is not an Array') }
-    it { expect { Discal.new([[1], [3]]) }.to raise_error(ArgumentError, 'Point 1 must be: (lat, lng)') }
-    it { expect { Discal.new([[1, 2], [3]]) }.to raise_error(ArgumentError, 'Point 2 must be: (lat, lng)') }
-    it { expect { Discal.new([[1, 2], [3, 4]]) }.not_to raise_error }
   end
 
-  coordinates = [[2.78788, 3.578787], [3.6565, 55.6434]]
-  distance = Math.sqrt((3.6565 - 2.78788) ** 2 + (55.6434 - 3.578787) ** 2)
+  x1 = 2.78788
+  x2 = 3.6565
+  x3 = 7.6565
+  y1 = 3.578787
+  y2 = 55.6434
+  y3 = 57.6434
+  coordinates = [[x1, y1], [x2, y2], [x3, y3], [x2, y2]]
+  d1 = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+  d2 = Math.sqrt((x3 - x1) ** 2 + (y3 - y1) ** 2)
+  d3 = Math.sqrt((x3 - x2) ** 2 + (y3 - y2) ** 2)
+  d4 = Math.sqrt((x2 - x2) ** 2 + (y2 - y2) ** 2)
 
   describe '#calculate_distance_with_math' do
     d = Discal.new(coordinates)
     it 'calculates' do
-      expect(d.calculate_distance_with_math).to eq distance
+      expect(d.calculate_distance_with_math).to eq [d1, d2, d1, d3, d4, d3]
     end
   end
 
