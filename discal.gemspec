@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.author                       = "Pablo Marti [new email: pablo.marti.dev@gmail.com]"
   s.email                        = "pablo.marti89@gmail.com"
   s.files                        = ["lib/discal.rb"]
-  s.homepage                     = "http://rubygems.org/gems/discal"
+  s.homepage                     = "https://github.com/pablomarti/Discal"
   s.license                      = "MIT"
 
   s.add_development_dependency 'rspec', '~> 3.8'
